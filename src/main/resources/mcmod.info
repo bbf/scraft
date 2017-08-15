@@ -1,0 +1,16 @@
+[
+{
+  "modid": "scraft",
+  "name": "scraft",
+  "description": "Do you like robots? Do you like coding Javascript? Get ready for Scraft!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["bbf"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
