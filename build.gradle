@@ -21,7 +21,7 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12-14.21.1.2420"
+    version = "1.12-14.21.1.2443"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -46,13 +46,15 @@ dependencies {
     // the 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
     //provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
 
-    compile "com.eclipsesource.j2v8:j2v8_win32_x86_64:2.2.1"
-    runtime "com.eclipsesource.j2v8:j2v8_win32_x86_64:2.2.1"
+    compile "com.eclipsesource.j2v8:j2v8_win32_x86_64:4.6.0"
+    runtime "com.eclipsesource.j2v8:j2v8_win32_x86_64:4.6.0"
 
     // the deobf configurations:  'deobfCompile' and 'deobfProvided' are the same as the normal compile and provided,
     // except that these dependencies get remapped to your current MCP mappings
     //deobfCompile 'com.mod-buildcraft:buildcraft:6.0.8:dev'
     //deobfProvided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
+    
+    testCompile "junit:junit:4.12"  // Or whatever version
 
     // for more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
