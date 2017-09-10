@@ -8,6 +8,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -58,11 +59,40 @@ public class BlockNexus extends BlockContainer {
 		Scraft.getLogger().info("BlockNexus.createNewTileEntity()");
 		return new TileEntityNexus();
 	}
-	
+
 	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
 		super.onBlockAdded(worldIn, pos, state);
 		Scraft.getLogger().info("BlockNexus.onBlockAdded()");
+	}
+
+	@Override
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
+			ItemStack stack) {
+		Scraft.getLogger().info("BlockNexus.onBlockPlacedBy()");
+
+		if (worldIn.isRemote) {
+			return;
+		}
+
+		if (placer instanceof EntityPlayer == false) {
+			Scraft.getLogger().info("Block not placed by a player, ignoring activation.");
+			return;
+		}
+
+		EntityPlayer player = (EntityPlayer) placer;
+
+		TileEntity tileEntity = worldIn.getTileEntity(pos);
+		if (tileEntity instanceof TileEntityNexus == false) {
+			Scraft.getLogger().warn("BlockNexus should have a TitleEntityNexus, and not a {}",
+					tileEntity.getClass().getName());
+			return;
+		}
+
+		TileEntityNexus teNexus = (TileEntityNexus) tileEntity;
+
+		teNexus.setWorldCreate(worldIn);
+		teNexus.setOwner(player.getUniqueID());
 	}
 
 	@Override
